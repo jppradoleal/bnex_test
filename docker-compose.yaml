@@ -1,0 +1,22 @@
+services:
+  back-end-server:
+    build:
+      context: .
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+      - 5678:5678
+  db:
+    image: postgres:16.0
+    restart: unless-stopped
+    volumes:
+      - ./data/postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=bnex
+      - POSTGRES_DB=bnex
+      - POSTGRES_PASSWORD=bnex

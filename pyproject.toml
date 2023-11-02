@@ -24,6 +24,8 @@ pytest-django = "^4.6.0"
 faker = "^19.12.1"
 pre-commit = "^3.5.0"
 model-bakery = "^1.17.0"
+pytest-xdist = "^3.3.1"
+pytest-cov = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -47,4 +49,4 @@ profile="black"
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE="bnex.settings"
 python_files = ["test_*.py"]
-addopts = "--ignore=data"
+addopts = "--ignore=data --reuse-db --cov=products --cov=core"

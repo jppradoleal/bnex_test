@@ -9,6 +9,13 @@ services:
     ports:
       - 8000:8000
       - 5678:5678
+  front-end-server:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - 5173:5173
   db:
     image: postgres:16.0
     restart: unless-stopped

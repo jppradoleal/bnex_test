@@ -13,7 +13,7 @@ class UserViewset(
 ):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permissions = (IsOwnProfile,)
+    permission_classes = (IsOwnProfile,)
 
     @action(methods=["get"], detail=False)
     def whoami(self, request):

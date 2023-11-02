@@ -172,3 +172,12 @@ LOGGING = {
         },
     },
 }
+
+LOGIN_REDIRECT_URL = "/"
+LOGIN_URL = "/login"
+
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    }
+}

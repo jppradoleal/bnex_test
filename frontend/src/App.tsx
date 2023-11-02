@@ -4,10 +4,12 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CreateProduct from "./pages/CreateProduct";
 import ErrorPage from "./pages/ErrorPage";
+import NavBar from "./components/NavBar";
 
 export default function App() {
   return (
     <Router>
+      <NavBar />
       <main>
         <Routes>
           <Route>

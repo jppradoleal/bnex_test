@@ -17,8 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from .openapi import schema_view
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path(
+        r"swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="swagger-ui",
+    ),
     path("products/", include("products.urls")),
     path("", include("core.urls")),
 ]

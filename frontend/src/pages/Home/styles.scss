@@ -1,0 +1,24 @@
+#home {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 24rem;
+  gap: 1rem;
+
+  .create-new-product {
+    text-decoration: none;
+    color: black;
+    font-size: 0.85rem;
+
+    align-self: flex-end;
+    padding: 0.75rem 4rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(0.85);
+    }
+    background: #7d7;
+  }
+}

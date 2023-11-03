@@ -1,3 +1,18 @@
+import {
+  Table,
+  TableContainer,
+  Tbody,
+  Th,
+  Thead,
+  Tr,
+  Spinner,
+  useToast,
+} from "@chakra-ui/react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UserContext, { IUserContext } from "../../contexts/UserContext";
+import useAuth from "../../hooks/useAuth";
+import productsService from "../../services/products";
 import Actions from "../Actions";
 import ProductsTableRow from "./ProductsTableRow";
 import "./styles.scss";
@@ -13,33 +28,43 @@ export type Product = {
 
 export interface IProductsTableProps {
   products: Product[];
-  handleDelete: (id: number) => void;
 }
 
-export default function ProductsTable({
-  products,
-  handleDelete,
-}: IProductsTableProps) {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Contato do Dono</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((product) => (
-          <ProductsTableRow product={product}>
-            <Actions
-              handleDelete={() => handleDelete(product.id)}
-              updateLink={`/update-product/${product.id}`}
-            />
-          </ProductsTableRow>
-        ))}
-      </tbody>
-    </table>
+export default function ProductsTable({ products }: IProductsTableProps) {
+  const { token } = useContext(UserContext) as IUserContext;
+  const { email } = useAuth();
+  const [loading, setLoading] = useState(false);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  return products.length > 0 ? (
+    <TableContainer>
+      <Table variant="striped">
+        <Thead>
+          <Tr>
+            <Th>Nome</Th>
+            <Th isNumeric>Preço</Th>
+            <Th>Contato do Dono</Th>
+            <Th>Ações</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {products.map((product) => (
+            <ProductsTableRow product={product} key={product.id}>
+              {product.owner.email === email && (
+                <Actions
+                  handleDelete={() => handleDelete(product.id)}
+                  updateLink={`/update-product/${product.id}`}
+                />
+              )}
+            </ProductsTableRow>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+  ) : (
+    <span>Nenhum produto cadastrado</span>
   );
 }

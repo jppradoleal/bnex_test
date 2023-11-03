@@ -2,9 +2,6 @@
   display: flex;
   flex-direction: column;
   margin: 2rem auto;
-  width: 20%;
-  justify-content: center;
-  align-items: center;
   gap: 1rem;
 
   section {
@@ -12,28 +9,5 @@
     display: flex;
     flex-direction: column;
     gap: .25rem;
-
-    label {
-      font-weight: bold;
-    }
-  }
-
-  input {
-    background: #ddd;
-    padding: .5rem 1rem;
-    width: 100%;
-  }
-  
-  button {
-    align-self: flex-end;
-    border: 0;
-    padding: .5rem 2rem;
-    font-weight: bold;
-    background: #ddd;
-    cursor: pointer;
-
-    &:hover {
-      filter: brightness(.85);
-    }
   }
 }

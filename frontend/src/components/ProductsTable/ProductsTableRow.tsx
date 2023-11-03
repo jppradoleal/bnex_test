@@ -1,18 +1,19 @@
 import React from "react";
 import { Product } from "./index.tsx";
+import {Tr, Td} from "@chakra-ui/react"
 
 export interface IProductsTableRowProps {
   product: Product;
-  children: React.ReactElement
+  children: React.ReactElement | false
 }
 
 export default function ProductsTableRow({ product, children }: IProductsTableRowProps) {
   return (
-    <tr>
-      <td>{product.name}</td>
-      <td>{product.price}</td>
-      <td>{product.owner.email}</td>
+    <Tr>
+      <Td>{product.name}</Td>
+      <Td isNumeric>{product.price}</Td>
+      <Td>{product.owner.email}</Td>
       { children }
-    </tr>
+    </Tr>
   );
 }

@@ -1,3 +1,4 @@
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import action
 from rest_framework.mixins import CreateModelMixin, DestroyModelMixin, UpdateModelMixin
 from rest_framework.response import Response
@@ -5,7 +6,7 @@ from rest_framework.viewsets import GenericViewSet
 
 from .models import User
 from .permissions import IsOwnProfile
-from .serializers import UserSerializer
+from .serializers import AuthTokenSerializer, UserSerializer
 
 
 class UserViewset(
@@ -29,3 +30,7 @@ class UserViewset(
             return qs.none()
 
         return qs.filter(pk=self.request.user.id)
+
+
+class CustomObtainAuthToken(ObtainAuthToken):
+    serializer_class = AuthTokenSerializer

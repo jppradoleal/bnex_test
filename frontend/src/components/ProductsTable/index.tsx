@@ -1,8 +1,25 @@
-import { Link } from "react-router-dom";
-
+import Actions from "../Actions";
+import ProductsTableRow from "./ProductsTableRow";
 import "./styles.scss";
 
-export default function ProductsTable() {
+export type Product = {
+  id: number;
+  name: string;
+  price: number;
+  owner: {
+    email: string;
+  };
+};
+
+export interface IProductsTableProps {
+  products: Product[];
+  handleDelete: (id: number) => void;
+}
+
+export default function ProductsTable({
+  products,
+  handleDelete,
+}: IProductsTableProps) {
   return (
     <table>
       <thead>
@@ -14,32 +31,14 @@ export default function ProductsTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Python Fluente</td>
-          <td>R$ 69,99</td>
-          <td>joaopedro0128@hotmail.com</td>
-          <td className="actions">
-            <Link to={""} className="actions_editar">
-              Editar
-            </Link>
-            <Link to={""} className="actions_deletar">
-              Deletar
-            </Link>
-          </td>
-        </tr>
-        <tr>
-          <td>Esteira Kikos</td>
-          <td>R$ 1699,99</td>
-          <td>jorge@gmail.com</td>
-          <td className="actions">
-            <Link to={""} className="actions_editar">
-              Editar
-            </Link>
-            <Link to={""} className="actions_deletar">
-              Deletar
-            </Link>
-          </td>
-        </tr>
+        {products.map((product) => (
+          <ProductsTableRow product={product}>
+            <Actions
+              handleDelete={() => handleDelete(product.id)}
+              updateLink={`/update-product/${product.id}`}
+            />
+          </ProductsTableRow>
+        ))}
       </tbody>
     </table>
   );

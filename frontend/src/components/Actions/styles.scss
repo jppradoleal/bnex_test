@@ -1,0 +1,14 @@
+.actions {
+  display: flex;
+  flex-direction: row;
+
+  gap: 1rem;
+
+  .actions_editar {
+    background: #7d7;
+  }
+
+  .actions_deletar {
+    background: #ff6961;
+  }
+}

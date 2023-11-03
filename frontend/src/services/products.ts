@@ -18,7 +18,7 @@ class ProductsService {
   }
 
   async update(data: Product, id: number, token: string) {
-    return await this.api.patch(`/products/${id}`, data, {
+    return await this.api.patch(`/products/${id}/`, data, {
       headers: {
         Authorization: token,
       },
@@ -26,11 +26,11 @@ class ProductsService {
   }
 
   async get(id: number) {
-    return await this.api.get<Product>(`/products/${id}`);
+    return await this.api.get<Product>(`/products/${id}/`);
   }
 
   async delete(id: number, token: string) {
-    this.api.delete(`/products/${id}`, {
+    return await this.api.delete(`/products/${id}`, {
       headers: {
         Authorization: token,
       },

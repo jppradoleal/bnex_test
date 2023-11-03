@@ -9,6 +9,8 @@ services:
     ports:
       - 8000:8000
       - 5678:5678
+    depends_on:
+      - db
   front-end-server:
     build:
       context: ./frontend
@@ -16,6 +18,8 @@ services:
       - ./frontend:/app
     ports:
       - 5173:5173
+    depends_on:
+      - back-end-server
   db:
     image: postgres:16.0
     restart: unless-stopped

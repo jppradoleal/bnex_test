@@ -7,4 +7,4 @@ COPY package*.json /app/
 RUN npm ci
 COPY . .
 EXPOSE 5173
-ENTRYPOINT [ "./docker-entrypoint.sh" ]
+CMD [ "npm", "run", "dev" ]

@@ -6,7 +6,6 @@ export default function NavBar() {
     <nav>
       <Link to={"/"}>Produtos</Link>
       <Link to={"/login"}>Acessar</Link>
-      <Link to={"/register"}>Registrar</Link>
     </nav>
   )
 }

@@ -1,7 +1,13 @@
+import UserForm, { UserData } from "../components/LoginForm";
+
 export default function Register() {
+  function handleSubmit(data: UserData) {
+    console.log(data)
+  }
+
   return (
-    <section>
-      <h1>Register Page</h1>
+    <section id="register-page">
+      <UserForm onSubmit={handleSubmit} />
     </section>
   )
 }

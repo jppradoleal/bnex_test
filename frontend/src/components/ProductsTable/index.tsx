@@ -31,9 +31,30 @@ export interface IProductsTableProps {
 }
 
 export default function ProductsTable({ products }: IProductsTableProps) {
+  const navigate = useNavigate();
+  const toast = useToast();
   const { token } = useContext(UserContext) as IUserContext;
   const { email } = useAuth();
   const [loading, setLoading] = useState(false);
+
+  async function handleDelete(id: number) {
+    setLoading(true);
+    await productsService
+      .delete(id, token!)
+      .then(() => {
+        navigate(0);
+      })
+      .catch(() => {
+        toast({
+          title: "Erro",
+          description: "Erro ao deletar o produto",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+    setLoading(false);
+  }
 
   if (loading) {
     return <Spinner />;

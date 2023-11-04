@@ -27,7 +27,7 @@ export default function Home() {
   }, [refetch]);
 
   return !loading ? (
-    <Container maxW="container.lg" id="home">
+    <Container maxW="container.lg" id="home" pt="5">
       {data?.results && <ProductsTable products={data.results} />}
       {error && (
         <Alert>

@@ -23,7 +23,8 @@ jobs:
         run: npm ci
       - name: Linting
         run: |
-          npm lint
+          npm run format
+          npm run lint
       - name: Tests
         run: npm test
 

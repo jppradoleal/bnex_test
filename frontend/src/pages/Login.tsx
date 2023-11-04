@@ -29,7 +29,7 @@ export default function Login() {
           duration: 5000,
           status: "error",
           isClosable: true,
-        })
+        });
       });
 
     setLoading(false);

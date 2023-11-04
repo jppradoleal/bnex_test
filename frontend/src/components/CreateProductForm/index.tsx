@@ -67,7 +67,7 @@ export default function CreateProductForm({
         />
         <FormErrorMessage>{errors?.price?.message}</FormErrorMessage>
       </FormControl>
-      <Flex direction={"column"} >
+      <Flex direction={"column"}>
         <Button
           isLoading={isSubmitting}
           type="submit"

@@ -14,7 +14,7 @@ export default function App() {
   const [email, setEmail] = useState<string | null>(null);
 
   function updateToken(token: string | null) {
-    setToken(token)
+    setToken(token);
     if (token) {
       localStorage.setItem("bnex:auth_token", token);
     } else {
@@ -23,7 +23,7 @@ export default function App() {
   }
 
   function updateEmail(email: string | null) {
-    setEmail(email)
+    setEmail(email);
     if (email) {
       localStorage.setItem("bnex:auth_email", email);
     } else {

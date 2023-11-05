@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Actions from ".";
 import React from "react";
@@ -23,7 +23,7 @@ const wrapper = ({ children }: IWrapperProps) =>
 describe("Actions", () => {
   const handleDeleteSpy = vi.fn();
 
-  test("should show edit button with aria and icon", () => {
+  it("should show edit button with aria and icon", () => {
     render(
       <Actions
         handleDelete={() => {}}
@@ -38,7 +38,7 @@ describe("Actions", () => {
     expect(element.getAttribute("href")).toBe("/update-product/1");
     expect(element.getAttribute("aria-label")).toBe("Editar");
   });
-  test("should show delete button with aria and icon", () => {
+  it("should show delete button with aria and icon", () => {
     render(
       <Actions
         handleDelete={() => {}}
@@ -52,7 +52,7 @@ describe("Actions", () => {
     expect(element).toBeDefined();
     expect(element.getAttribute("aria-label")).toBe("Deletar");
   });
-  test("should call a function when delete is clicked", () => {
+  it("should call a function when delete is clicked", () => {
     render(
       <Actions
         handleDelete={handleDeleteSpy}

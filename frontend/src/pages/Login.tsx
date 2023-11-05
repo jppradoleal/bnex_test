@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
-import UserForm, { UserData } from "../components/LoginForm";
+import { Container, Spinner, useToast } from "@chakra-ui/react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext, { IUserContext } from "../contexts/UserContext";
+import UserForm, { UserData } from "../components/LoginForm";
 import authService from "../services/auth";
-import { Spinner, useToast, Container } from "@chakra-ui/react";
+import useUserContext from "../hooks/useUserContext";
 
 export default function Login() {
   const toast = useToast();
   const navigate = useNavigate();
-  const { setToken, setEmail } = useContext(UserContext) as IUserContext;
+  const { setToken, setEmail } = useUserContext();
   const [loading, setLoading] = useState<boolean>(false);
 
   async function handleSubmit(data: UserData) {

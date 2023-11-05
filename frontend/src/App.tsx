@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import GuardedRoute from "./components/GuardedRoute";
 
 export default function App() {
+  const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
 
@@ -36,12 +37,19 @@ export default function App() {
     setEmail(localStorage.getItem("bnex:auth_email"));
   }, []);
 
+
+  function handleLogout() {
+    updateEmail(null);
+    updateToken(null);
+    navigate(0);
+  }
+
   return (
     <UserContext.Provider
       value={{ token, setToken: updateToken, email, setEmail: updateEmail }}
     >
       <Router>
-        <NavBar />
+        <NavBar handleLogout={handleLogout}/>
         <main>
           <Routes>
             <Route>

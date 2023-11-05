@@ -1,21 +1,21 @@
 import {
+  Spinner,
   Table,
   TableContainer,
   Tbody,
   Th,
   Thead,
   Tr,
-  Spinner,
   useToast,
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext, { IUserContext } from "../../contexts/UserContext";
 import useAuth from "../../hooks/useAuth";
 import productsService from "../../services/products";
 import Actions from "../Actions";
 import ProductsTableRow from "./ProductsTableRow";
 import "./styles.scss";
+import useUserContext from "../../hooks/useUserContext";
 
 export type Product = {
   id: number;
@@ -33,7 +33,7 @@ export interface IProductsTableProps {
 export default function ProductsTable({ products }: IProductsTableProps) {
   const navigate = useNavigate();
   const toast = useToast();
-  const { token } = useContext(UserContext) as IUserContext;
+  const { token } = useUserContext();
   const { email } = useAuth();
   const [loading, setLoading] = useState(false);
 

@@ -1,14 +1,14 @@
-import { Spinner, useToast, Container } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { Container, Spinner, useToast } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CreateProductForm, { Product } from "../components/CreateProductForm";
-import UserContext, { IUserContext } from "../contexts/UserContext";
 import productsService from "../services/products";
+import useUserContext from "../hooks/useUserContext";
 
 export default function CreateProduct() {
   const toast = useToast();
   const navigate = useNavigate();
-  const { token } = useContext(UserContext) as IUserContext;
+  const { token } = useUserContext();
   const [loading, setLoading] = useState<boolean>(false);
   const [product, setProduct] = useState<Product | null>(null);
   const { id } = useParams();

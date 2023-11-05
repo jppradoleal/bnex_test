@@ -4,22 +4,16 @@ import {
   Flex,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useContext } from "react";
-import { Link as ReactRouterLink, useNavigate } from "react-router-dom";
-import UserContext, { IUserContext } from "../../contexts/UserContext";
+import { Link as ReactRouterLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./index.scss";
 
-export default function NavBar() {
-  const { isAuthenticated } = useAuth();
-  const { setEmail, setToken } = useContext(UserContext) as IUserContext;
-  const navigate = useNavigate();
+interface INavBarProps {
+  handleLogout: () => void
+}
 
-  function handleLogout() {
-    setEmail(null);
-    setToken(null);
-    navigate(0);
-  }
+export default function NavBar({ handleLogout }: INavBarProps) {
+  const { isAuthenticated } = useAuth();
 
   return (
     <Box>
@@ -41,6 +35,7 @@ export default function NavBar() {
               to={"/"}
               fontSize={"sm"}
               fontWeight={400}
+              data-testid="products-list"
             >
               Produtos
             </ChakraLink>
@@ -58,6 +53,7 @@ export default function NavBar() {
                 _hover={{
                   bg: "pink.300",
                 }}
+                data-testid="login"
               >
                 Acessar
               </ChakraLink>
@@ -77,6 +73,7 @@ export default function NavBar() {
                 _hover={{
                   bg: "pink.300",
                 }}
+                data-testid="logout"
               >
                 Sair
               </ChakraLink>

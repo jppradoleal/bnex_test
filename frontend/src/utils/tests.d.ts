@@ -1,5 +1,5 @@
-import 'vitest';
-import { TestingLibraryMatchers } from '@testing-library/react';
+import "vitest";
+import { TestingLibraryMatchers } from "@testing-library/react";
 
 declare global {
   namespace Vi {

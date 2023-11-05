@@ -15,6 +15,7 @@ export default function Actions({ updateLink, handleDelete }: IActionsProps) {
         to={updateLink}
         className="actions_editar"
         aria-label="Editar"
+        data-testid="edit-button"
       >
         <EditIcon />
       </ChakraLink>
@@ -24,6 +25,7 @@ export default function Actions({ updateLink, handleDelete }: IActionsProps) {
         aria-label="Deletar"
         bg="transparent"
         _hover={{ bg: "transparent" }}
+        data-testid="delete-button"
       >
         <DeleteIcon />
       </Button>
